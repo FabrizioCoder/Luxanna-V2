@@ -1,0 +1,29 @@
+{
+  "name": "luxanna-v2",
+  "version": "1.0.0",
+  "description": "A League of Legends Discord bot",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "start": "node .",
+    "types": "pnpm dlx openapi-typescript https://www.mingweisamuel.com/riotapi-schema/openapi-3.0.0.yml -o src/types/riot-api.ts"
+  },
+  "keywords": [],
+  "author": "Fabrizio Santana",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^22.10.5",
+    "eslint": "^9.18.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-prettier": "^5.2.1",
+    "openapi-typescript": "^7.5.2",
+    "prettier": "^3.4.2",
+    "typescript": "^5.7.3"
+  },
+  "dependencies": {
+    "axios": "^1.7.9",
+    "axios-retry": "^4.5.0",
+    "dotenv": "^16.4.7",
+    "seyfert": "2.2.1-dev-12726380923.0"
+  }
+}
