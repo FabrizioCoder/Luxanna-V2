@@ -1,6 +1,12 @@
+import { SPANISH_REGIONS } from '../config/regions';
 import type English from './en-US';
 
 export default {
+  extra: {
+    regions: (key: unknown) => {
+      return SPANISH_REGIONS[key as keyof typeof SPANISH_REGIONS];
+    },
+  },
   middlewares: {
     cooldown: {
       user: (timeLeft: string) => {
@@ -29,11 +35,13 @@ export default {
             fail: '⚠️ ID de Riot inválido proporcionado. Debe tener entre 3 y 21 caracteres y debe incluir el símbolo "#"',
           },
           region: {
+            name: 'región',
             description: 'La región donde se encuentra el invocador',
             fail: (regions: string[]) =>
               `⚠️ Región inválida proporcionada. Regiones disponibles: ${regions.map((value) => `\`${value}\``).join(', ')}`,
           },
           user: {
+            name: 'usuario',
             description: 'Si el usuario tiene un Riot ID asociado a su cuenta',
             fail: '⚠️ Usuario inválido proporcionado. Asegúrate de que el usuario tenga un Riot ID asociado a su cuenta',
           },

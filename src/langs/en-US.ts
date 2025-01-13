@@ -1,4 +1,11 @@
+import { FORMATTED_PLATFORM_REGIONS, SPANISH_REGIONS } from '../config/regions';
+
 export default {
+  extra: {
+    regions: (key: unknown): typeof FORMATTED_PLATFORM_REGIONS[keyof typeof FORMATTED_PLATFORM_REGIONS] | typeof SPANISH_REGIONS[keyof typeof SPANISH_REGIONS] => {
+      return FORMATTED_PLATFORM_REGIONS[key as keyof typeof FORMATTED_PLATFORM_REGIONS];
+    },
+  },
   middlewares: {
     cooldown: {
       user: (timeLeft: string) => {
@@ -27,11 +34,13 @@ export default {
             fail: '⚠️ Invalid Riot ID provided. It must be 3-21 characters long and can include "#" symbol',
           },
           region: {
+            name: 'region',
             description: 'The region where the summoner is located',
             fail: (regions: string[]) =>
               `⚠️ Invalid region provided. Available regions: ${regions.map((value) => `\`${value}\``).join(', ')}`,
           },
           user: {
+            name: 'user',
             description:
               'If the user has a Riot ID associated with their account',
             fail: '⚠️ Invalid user provided. Ensure the user has a Riot ID associated with their account',

@@ -43,6 +43,25 @@ export const FORMATTED_PLATFORM_REGIONS = {
   VN2: 'Vietnam',
 } as const;
 
+export const SPANISH_REGIONS = {
+  BR1: 'Brasil',
+  EUN1: 'Europa Nórdica y del Este',
+  EUW1: 'Europa Occidental',
+  JP1: 'Japón',
+  KR: 'Corea',
+  LA1: 'Latinoamérica Norte',
+  LA2: 'Latinoamérica Sur',
+  NA1: 'Norteamérica',
+  OC1: 'Oceanía',
+  TR1: 'Turquía',
+  RU: 'Rusia',
+  PH2: 'Filipinas',
+  SG2: 'Singapur',
+  TH2: 'Tailandia',
+  TW2: 'Taiwán',
+  VN2: 'Vietnam',
+} as const
+
 export function PLATFORM_TO_REGIONAL(platformRegion: PlatformRegion): RegionalRegion {
   switch (platformRegion) {
     case 'BR1':
