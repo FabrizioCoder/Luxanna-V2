@@ -1,5 +1,5 @@
 import { paths } from '../types/riot-api';
-export type GetApiResponse<P extends keyof paths> =
+export type ApiResponseTypes<P extends keyof paths> =
   paths[P]['get'] extends never
     ? undefined
     : paths[P]['get'] extends {

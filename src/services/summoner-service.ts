@@ -1,5 +1,5 @@
 import { RiotApiWrapper } from '../core/riot-api-wrapper';
-import { GetApiResponse } from 'src/config/types';
+import { ApiResponseTypes } from 'src/config/types';
 
 export class SummonerService extends RiotApiWrapper {
   /**
@@ -9,12 +9,10 @@ export class SummonerService extends RiotApiWrapper {
    * */
   public async getSummonerByPuuid(
     puuid: string
-  ): Promise<
-    GetApiResponse<'/lol/summoner/v4/summoners/by-puuid/{encryptedPUUID}'>
-  > {
+  ): Promise<ApiResponseTypes<'/lol/summoner/v4/summoners/by-puuid/{encryptedPUUID}'> | null> {
     const endpoint = `/lol/summoner/v4/summoners/by-puuid/${puuid}`;
     return this.request<
-      GetApiResponse<'/lol/summoner/v4/summoners/by-puuid/{encryptedPUUID}'>
+      ApiResponseTypes<'/lol/summoner/v4/summoners/by-puuid/{encryptedPUUID}'>
     >(endpoint);
   }
 
@@ -25,12 +23,10 @@ export class SummonerService extends RiotApiWrapper {
    * */
   public async getSummonerByAccountId(
     accountId: string
-  ): Promise<
-    GetApiResponse<'/lol/summoner/v4/summoners/by-account/{encryptedAccountId}'>
-  > {
+  ): Promise<ApiResponseTypes<'/lol/summoner/v4/summoners/by-account/{encryptedAccountId}'> | null> {
     const endpoint = `/lol/summoner/v4/summoners/by-account/${accountId}`;
     return this.request<
-      GetApiResponse<'/lol/summoner/v4/summoners/by-account/{encryptedAccountId}'>
+      ApiResponseTypes<'/lol/summoner/v4/summoners/by-account/{encryptedAccountId}'>
     >(endpoint);
   }
 }

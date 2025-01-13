@@ -31,6 +31,7 @@ client.setServices({
 (async () => {
   try {
     await client.start();
+    await client.uploadCommands({ cachePath: 'data-cache/commands.json' });
     GameVersionService.startAutoUpdate();
     setTimeout(async () => await DataDragonService.updateAllData(), 10000);
   } catch (error) {

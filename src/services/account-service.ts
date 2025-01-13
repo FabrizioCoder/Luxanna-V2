@@ -1,16 +1,14 @@
 import { RiotApiWrapper } from '../core/riot-api-wrapper';
-import { GetApiResponse } from 'src/config/types';
+import { ApiResponseTypes } from 'src/config/types';
 
 export class AccountService extends RiotApiWrapper {
   public async getAccountByRiotId(
-    gameName: string,
-    tagLine: string
-  ): Promise<
-    GetApiResponse<'/riot/account/v1/accounts/by-riot-id/{gameName}/{tagLine}'>
-  > {
+    riotId: string
+  ): Promise<ApiResponseTypes<'/riot/account/v1/accounts/by-riot-id/{gameName}/{tagLine}'> | null> {
+    const [gameName, tagLine] = riotId.split('#');
     const endpoint = `/riot/account/v1/accounts/by-riot-id/${gameName}/${tagLine}`;
     return this.request<
-      GetApiResponse<'/riot/account/v1/accounts/by-riot-id/{gameName}/{tagLine}'>
+      ApiResponseTypes<'/riot/account/v1/accounts/by-riot-id/{gameName}/{tagLine}'>
     >(endpoint);
   }
 }
