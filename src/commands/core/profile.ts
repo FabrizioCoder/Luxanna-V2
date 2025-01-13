@@ -43,7 +43,7 @@ export default class ProfileCommand extends SubCommand {
       });
     }
 
-    const summoner = await summonerService.getSummonerByPuuid(account.puuid);
+    const summoner = await summonerService.getByPuuid(account.puuid);
     if (!summoner) {
       return ctx.editOrReply({
         content: ctx.t.commands.core.profile.fail.get(),
