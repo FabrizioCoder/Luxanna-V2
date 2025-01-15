@@ -1,19 +1,10 @@
+import type { ApiResponseTypes } from 'src/config/types';
+
 import { RiotApiWrapper } from '../core/riot-api-wrapper';
-import { ApiResponseTypes } from 'src/config/types';
 
 type MatchDto = ApiResponseTypes<'/lol/match/v5/matches/{matchId}'>;
 
 export class MatchService extends RiotApiWrapper {
-  /**
-   * Obtiene la información de una partida por su id.
-   * @param matchId - El id de la partida.
-   * @returns La información de la partida.
-   */
-  public async getMatchById(matchId: string): Promise<MatchDto | null> {
-    const endpoint = `/lol/match/v5/matches/${matchId}`;
-    return this.request<MatchDto>(endpoint);
-  }
-
   /**
    * Obtiene la lista de partidas de un invocador.
    * @param puuid - El puuid del invocador.
@@ -25,13 +16,23 @@ export class MatchService extends RiotApiWrapper {
     query: QueryParameters
   ): Promise<MatchDto[] | null> {
     const matchList = await this.getMatchListByPuuid(puuid, query);
-    if (!matchList) return null;
+    if (!matchList) {
+      return null;
+    }
 
-    const matchPromises = matchList.map((matchId) =>
-      this.getMatchById(matchId)
-    );
+    const matchPromises = matchList.map((matchId) => this.getMatchById(matchId));
     const matches = await Promise.all(matchPromises);
     return matches.filter((match): match is MatchDto => match !== null);
+  }
+
+  /**
+   * Obtiene la información de una partida por su id.
+   * @param matchId - El id de la partida.
+   * @returns La información de la partida.
+   */
+  public async getMatchById(matchId: string): Promise<MatchDto | null> {
+    const endpoint = `/lol/match/v5/matches/${matchId}`;
+    return this.request<MatchDto>(endpoint);
   }
 
   private async getMatchListByPuuid(
@@ -47,7 +48,7 @@ interface QueryParameters {
   startTime: number;
   endTime: number;
   queue: number;
-  type: string;
   start: number;
   count: number;
+  type: string;
 }

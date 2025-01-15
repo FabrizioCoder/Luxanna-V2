@@ -1,5 +1,6 @@
+import type { ApiResponseTypes } from '../config/types';
+
 import { RiotApiWrapper } from '../core/riot-api-wrapper';
-import { ApiResponseTypes } from '../config/types';
 
 type LeagueEntryDTO =
   ApiResponseTypes<'/lol/league/v4/entries/by-summoner/{encryptedSummonerId}'>;

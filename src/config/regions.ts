@@ -14,14 +14,14 @@ export const PLATFORM_REGIONS = {
   SG2: 'sg2.api.riotgames.com',
   TH2: 'th2.api.riotgames.com',
   TW2: 'tw2.api.riotgames.com',
-  VN2: 'vn2.api.riotgames.com',
+  VN2: 'vn2.api.riotgames.com'
 } as const;
 
 export const REGIONAL_REGIONS = {
   AMERICAS: 'americas.api.riotgames.com',
   ASIA: 'asia.api.riotgames.com',
   EUROPE: 'europe.api.riotgames.com',
-  SEA: 'sea.api.riotgames.com',
+  SEA: 'sea.api.riotgames.com'
 } as const;
 
 export const FORMATTED_PLATFORM_REGIONS = {
@@ -40,7 +40,7 @@ export const FORMATTED_PLATFORM_REGIONS = {
   SG2: 'Singapore',
   TH2: 'Thailand',
   TW2: 'Taiwan',
-  VN2: 'Vietnam',
+  VN2: 'Vietnam'
 } as const;
 
 export const SPANISH_REGIONS = {
@@ -59,29 +59,29 @@ export const SPANISH_REGIONS = {
   SG2: 'Singapur',
   TH2: 'Tailandia',
   TW2: 'Taiwán',
-  VN2: 'Vietnam',
-} as const
+  VN2: 'Vietnam'
+} as const;
 
 export function PLATFORM_TO_REGIONAL(platformRegion: PlatformRegion): RegionalRegion {
   switch (platformRegion) {
+    case 'EUN1':
+    case 'EUW1':
+    case 'JP1':
+    case 'KR':
+      return 'EUROPE';
     case 'BR1':
     case 'LA1':
     case 'LA2':
     case 'NA1':
     case 'OC1':
     case 'TR1':
-    case 'RU':
     case 'PH2':
     case 'SG2':
     case 'TH2':
     case 'TW2':
     case 'VN2':
+    case 'RU':
       return 'AMERICAS';
-    case 'EUN1':
-    case 'EUW1':
-    case 'JP1':
-    case 'KR':
-      return 'EUROPE';
     default:
       return 'ASIA';
   }

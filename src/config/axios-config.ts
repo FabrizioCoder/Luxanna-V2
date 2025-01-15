@@ -1,10 +1,16 @@
-import axios, { AxiosInstance } from 'axios';
+import type { AxiosInstance } from 'axios';
+
 import axiosRetry from 'axios-retry';
+import axios from 'axios';
+
+import type {
+  PlatformRegion,
+  RegionalRegion
+} from './regions';
+
 import {
   PLATFORM_REGIONS,
-  REGIONAL_REGIONS,
-  PlatformRegion,
-  RegionalRegion,
+  REGIONAL_REGIONS
 } from './regions';
 
 /**
@@ -38,16 +44,15 @@ function createAxiosInstance(baseURL: string): AxiosInstance {
   const instance = axios.create({
     baseURL: `https://${baseURL}`,
     headers: {
-      'X-Riot-Token': process.env.RIOT_API_KEY,
-    },
+      'X-Riot-Token': process.env.RIOT_API_KEY
+    }
   });
 
   // Configurar reintentos automáticos
   axiosRetry(instance, {
     retries: 3,
-    retryCondition: (error) =>
-      error.response?.status === 429 || error.response!.status >= 500,
-    retryDelay: (retryCount) => retryCount * 1000,
+    retryCondition: (error) => error.response?.status === 429 || error.response!.status >= 500,
+    retryDelay: (retryCount) => retryCount * 1_000
   });
 
   return instance;

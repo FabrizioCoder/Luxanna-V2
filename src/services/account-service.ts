@@ -1,5 +1,6 @@
+import type { ApiResponseTypes } from 'src/config/types';
+
 import { RiotApiWrapper } from '../core/riot-api-wrapper';
-import { ApiResponseTypes } from 'src/config/types';
 
 export class AccountService extends RiotApiWrapper {
   public async getAccountByRiotId(

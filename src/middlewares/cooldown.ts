@@ -1,22 +1,27 @@
-import { createMiddleware } from 'seyfert';
+import type { Snowflake } from 'seyfert/lib/types';
+import type { Ratelimit } from 'src/config/types';
+
 import { LimitedCollection } from 'seyfert/lib/collection';
-import { Snowflake } from 'seyfert/lib/types';
-import { Ratelimit } from 'src/config/types';
+import { createMiddleware } from 'seyfert';
 
 const cooldowns = new LimitedCollection<Snowflake, Ratelimit>({});
 
-export default createMiddleware<void>(async (middle) => {
-  if (!middle.context.isChat()) return;
+export default createMiddleware<undefined>(async (middle) => {
+  if (!middle.context.isChat()) {
+    return;
+  }
 
   const commandCooldown = middle.context.command.props.ratelimit;
-  if (!commandCooldown) return middle.next();
+  if (!commandCooldown) {
+    middle.next(); return;
+  }
 
   const commandName = middle.context.resolver.fullCommandName;
   const t = middle.context.t.get(middle.context.author.locale);
 
   const id =
     commandCooldown.type === 'channel'
-      ? (middle.context.interaction.channel?.id ?? middle.context.author.id)
+      ? middle.context.interaction.channel.id
       : middle.context.author.id;
 
   const key = `${id}:${commandName}`;
@@ -24,10 +29,10 @@ export default createMiddleware<void>(async (middle) => {
 
   if (!currentCooldown) {
     cooldowns.set(key, commandCooldown, commandCooldown.time);
-    return middle.next();
+    middle.next(); return;
   }
 
-  const timeLeft = (currentCooldown.expireOn - Date.now()) / 1000;
+  const timeLeft = (currentCooldown.expireOn - Date.now()) / 1_000;
 
   const replyContent =
     commandCooldown.type === 'user'
@@ -36,7 +41,7 @@ export default createMiddleware<void>(async (middle) => {
 
   await middle.context.interaction.editOrReply({
     content: replyContent,
-    flags: 64,
+    flags: 64
   });
 
   middle.stop(`cooldown (${commandCooldown.type}: ${id})`);

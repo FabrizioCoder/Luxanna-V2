@@ -1,13 +1,13 @@
-import { paths } from '../types/riot-api';
+import type { paths } from '../types/riot-api';
 export type ApiResponseTypes<P extends keyof paths> =
   paths[P]['get'] extends never
-    ? undefined
-    : paths[P]['get'] extends {
-          responses: { 200: { content: { 'application/json': infer R } } };
-        }
-      ? R
-      : never;
+  ? never
+  : paths[P]['get'] extends {
+    responses: { 200: { content: { 'application/json': infer R } } };
+  }
+  ? R
+  : never;
 export interface Ratelimit {
-  type: 'user' | 'channel';
+  type: 'channel' | 'user';
   time: number;
 }
