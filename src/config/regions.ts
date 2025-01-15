@@ -14,14 +14,14 @@ export const PLATFORM_REGIONS = {
   SG2: 'sg2.api.riotgames.com',
   TH2: 'th2.api.riotgames.com',
   TW2: 'tw2.api.riotgames.com',
-  VN2: 'vn2.api.riotgames.com'
+  VN2: 'vn2.api.riotgames.com',
 } as const;
 
 export const REGIONAL_REGIONS = {
   AMERICAS: 'americas.api.riotgames.com',
   ASIA: 'asia.api.riotgames.com',
   EUROPE: 'europe.api.riotgames.com',
-  SEA: 'sea.api.riotgames.com'
+  SEA: 'sea.api.riotgames.com',
 } as const;
 
 export const FORMATTED_PLATFORM_REGIONS = {
@@ -40,7 +40,7 @@ export const FORMATTED_PLATFORM_REGIONS = {
   SG2: 'Singapore',
   TH2: 'Thailand',
   TW2: 'Taiwan',
-  VN2: 'Vietnam'
+  VN2: 'Vietnam',
 } as const;
 
 export const SPANISH_REGIONS = {
@@ -59,7 +59,7 @@ export const SPANISH_REGIONS = {
   SG2: 'Singapur',
   TH2: 'Tailandia',
   TW2: 'Taiwán',
-  VN2: 'Vietnam'
+  VN2: 'Vietnam',
 } as const;
 
 export function PLATFORM_TO_REGIONAL(platformRegion: PlatformRegion): RegionalRegion {

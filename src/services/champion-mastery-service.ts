@@ -1,6 +1,6 @@
-import type { ApiResponseTypes } from '../config/types';
+import type { ApiResponseTypes, } from '../config/types';
 
-import { RiotApiWrapper } from '../core/riot-api-wrapper';
+import { RiotApiWrapper, } from '../core/riot-api-wrapper';
 
 type ChampionMasteriesDto =
   ApiResponseTypes<'/lol/champion-mastery/v4/champion-masteries/by-puuid/{encryptedPUUID}'>;

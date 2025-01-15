@@ -1,9 +1,9 @@
-import type { AxiosInstance, AxiosError } from 'axios';
+import type { AxiosInstance, AxiosError, } from 'axios';
 
-import { Logger } from 'seyfert';
+import { Logger, } from 'seyfert';
 import axios from 'axios';
 const logger = new Logger({
-  name: '[RiotApiWrapper]'
+  name: '[RiotApiWrapper]',
 });
 /**
  * Clase que envuelve la API de Riot para facilitar las solicitudes.
@@ -24,7 +24,7 @@ export class RiotApiWrapper {
   ): Promise<null | T> {
     // Retorna null si hay un error 404
     try {
-      const response = await this.api.get<T>(endpoint, { params });
+      const response = await this.api.get<T>(endpoint, { params, });
       return response.data;
     } catch (error) {
       return this.handleError(error, endpoint);

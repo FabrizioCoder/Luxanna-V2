@@ -22,7 +22,16 @@ export default config(
     },
     {
         rules: {
-            '@typescript-eslint/no-extraneous-class': 'off' // java devs
+            '@typescript-eslint/no-extraneous-class': 'off', // java devs
+            '@stylistic/comma-dangle': ['error', {
+                "arrays": "always",
+                "objects": "always",
+                "imports": "always",
+                "exports": "always",
+                "functions": "never",
+                "importAttributes": "always",
+                "dynamicImports": "always"
+            }]
         }
     }
 )

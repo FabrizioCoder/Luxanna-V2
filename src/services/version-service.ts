@@ -1,6 +1,6 @@
-import { Logger } from 'seyfert';
+import { Logger, } from 'seyfert';
 import axios from 'axios';
-const logger = new Logger({ name: '[GameVersionService]' });
+const logger = new Logger({ name: '[GameVersionService]', });
 
 export class GameVersionService {
   private static updateInterval: NodeJS.Timeout | null = null;

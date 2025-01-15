@@ -3,21 +3,21 @@ import {
   SubCommand,
   LocalesT,
   Declare,
-  Options
+  Options,
 } from 'seyfert';
 
 import {
   createPlatformAxiosInstance,
-  createRegionalAxiosInstance
+  createRegionalAxiosInstance,
 } from '../../config/axios-config';
-import { SummonerService } from '../../services/summoner-service';
-import { AccountService } from '../../services/account-service';
-import { PLATFORM_TO_REGIONAL } from '../../config/regions';
-import { baseSearchOptions } from '../../config/utils';
+import { SummonerService, } from '../../services/summoner-service';
+import { AccountService, } from '../../services/account-service';
+import { PLATFORM_TO_REGIONAL, } from '../../config/regions';
+import { baseSearchOptions, } from '../../config/utils';
 
 @Declare({
   name: 'profile',
-  description: 'Get statistics about a summoner'
+  description: 'Get statistics about a summoner',
 })
 @LocalesT('commands.core.profile.name', 'commands.core.profile.description')
 @Options(baseSearchOptions)
@@ -40,14 +40,14 @@ export default class ProfileCommand extends SubCommand {
     );
     if (!account) {
       return ctx.editOrReply({
-        content: ctx.t.commands.core.profile.fail.get()
+        content: ctx.t.commands.core.profile.fail.get(),
       });
     }
 
     const summoner = await summonerService.getByPuuid(account.puuid);
     if (!summoner) {
       return ctx.editOrReply({
-        content: ctx.t.commands.core.profile.fail.get()
+        content: ctx.t.commands.core.profile.fail.get(),
       });
     }
 

@@ -1,4 +1,4 @@
-import type { paths } from '../types/riot-api';
+import type { paths, } from '../types/riot-api';
 export type ApiResponseTypes<P extends keyof paths> =
   paths[P]['get'] extends never
   ? never

@@ -1,12 +1,12 @@
-import { Logger } from 'seyfert';
+import { Logger, } from 'seyfert';
 import fs from 'fs/promises';
 import axios from 'axios';
 import path from 'path';
 
-import type { ChampionData } from '../types/champions';
+import type { ChampionData, } from '../types/champions';
 
-import { GameVersionService } from './version-service';
-const logger = new Logger({ name: '[DataDragonService]' });
+import { GameVersionService, } from './version-service';
+const logger = new Logger({ name: '[DataDragonService]', });
 
 export class DataDragonService {
   private static readonly CACHE_DIR = path.join(__dirname, '../../data-cache');
@@ -21,19 +21,19 @@ export class DataDragonService {
     const endpoints = [
       {
         url: `https://ddragon.leagueoflegends.com/cdn/${currentVersion}/data/en_US/champion.json`,
-        file: 'champions.json'
+        file: 'champions.json',
       },
       {
         url: `https://ddragon.leagueoflegends.com/cdn/${currentVersion}/data/en_US/item.json`,
-        file: 'items.json'
+        file: 'items.json',
       },
       {
         url: `https://ddragon.leagueoflegends.com/cdn/${currentVersion}/data/en_US/runesReforged.json`,
-        file: 'runes.json'
-      }
+        file: 'runes.json',
+      },
     ];
 
-    for (const { url, file } of endpoints) {
+    for (const { url, file, } of endpoints) {
       logger.debug(`Fetching and updating ${file}...`);
       await this.getCachedData(url, file);
     }
@@ -110,6 +110,6 @@ export class DataDragonService {
   }
 
   private static async ensureCacheDir(): Promise<void> {
-    await fs.mkdir(this.CACHE_DIR, { recursive: true });
+    await fs.mkdir(this.CACHE_DIR, { recursive: true, });
   }
 }

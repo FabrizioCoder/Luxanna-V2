@@ -1,14 +1,14 @@
-import type { ParseMiddlewares, ParseLocales, ParseClient } from 'seyfert';
+import type { ParseMiddlewares, ParseLocales, ParseClient, } from 'seyfert';
 
-import { PresenceUpdateStatus, ActivityType } from 'seyfert/lib/types';
-import { Client } from 'seyfert';
+import { PresenceUpdateStatus, ActivityType, } from 'seyfert/lib/types';
+import { Client, } from 'seyfert';
 
-import type { Ratelimit } from './config/types';
+import type { Ratelimit, } from './config/types';
 import type English from './langs/en-US';
 
-import { DataDragonService } from './services/data-dragon-service';
-import { GameVersionService } from './services/version-service';
-import { AllMiddlewares } from './middlewares';
+import { DataDragonService, } from './services/data-dragon-service';
+import { GameVersionService, } from './services/version-service';
+import { AllMiddlewares, } from './middlewares';
 
 const client = new Client({
   presence: () => ({
@@ -17,28 +17,28 @@ const client = new Client({
     status: PresenceUpdateStatus.Online,
     activities: [{
       name: 'the summoner\'s rift',
-      type: ActivityType.Playing
-    }]
-  })
+      type: ActivityType.Playing,
+    },],
+  }),
 });
 
 client.setServices({
-  langs: { default: 'en-US' },
+  langs: { default: 'en-US', },
   middlewares: AllMiddlewares,
   cache: {
     disabledCache: {
       channels: true,
       roles: true,
       emojis: true,
-      messages: true
-    }
-  }
+      messages: true,
+    },
+  },
 });
 
 void (async () => {
   try {
     await client.start();
-    await client.uploadCommands({ cachePath: 'data-cache/commands.json' });
+    await client.uploadCommands({ cachePath: 'data-cache/commands.json', });
     GameVersionService.startAutoUpdate();
     setTimeout(async () => DataDragonService.updateAllData(), 10_000);
   } catch (error) {

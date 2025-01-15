@@ -1,6 +1,6 @@
-import type { ApiResponseTypes } from 'src/config/types';
+import type { ApiResponseTypes, } from 'src/config/types';
 
-import { RiotApiWrapper } from '../core/riot-api-wrapper';
+import { RiotApiWrapper, } from '../core/riot-api-wrapper';
 
 type MatchDto = ApiResponseTypes<'/lol/match/v5/matches/{matchId}'>;
 

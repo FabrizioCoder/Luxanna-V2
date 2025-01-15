@@ -1,8 +1,8 @@
-import type { Snowflake } from 'seyfert/lib/types';
-import type { Ratelimit } from 'src/config/types';
+import type { Snowflake, } from 'seyfert/lib/types';
+import type { Ratelimit, } from 'src/config/types';
 
-import { LimitedCollection } from 'seyfert/lib/collection';
-import { createMiddleware } from 'seyfert';
+import { LimitedCollection, } from 'seyfert/lib/collection';
+import { createMiddleware, } from 'seyfert';
 
 const cooldowns = new LimitedCollection<Snowflake, Ratelimit>({});
 
@@ -41,7 +41,7 @@ export default createMiddleware<undefined>(async (middle) => {
 
   await middle.context.interaction.editOrReply({
     content: replyContent,
-    flags: 64
+    flags: 64,
   });
 
   middle.stop(`cooldown (${commandCooldown.type}: ${id})`);

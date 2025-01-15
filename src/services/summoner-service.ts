@@ -1,9 +1,9 @@
-import type { ApiResponseTypes } from '../config/types';
+import type { ApiResponseTypes, } from '../config/types';
 
-import { ChampionMasteryService } from './champion-mastery-service';
-import { RiotApiWrapper } from '../core/riot-api-wrapper';
-import { LeagueService } from './league-service';
-import { MatchService } from './match-service';
+import { ChampionMasteryService, } from './champion-mastery-service';
+import { RiotApiWrapper, } from '../core/riot-api-wrapper';
+import { LeagueService, } from './league-service';
+import { MatchService, } from './match-service';
 
 type SummonerDTO =
   | ApiResponseTypes<'/lol/summoner/v4/summoners/by-account/{encryptedAccountId}'>
