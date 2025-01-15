@@ -1,26 +1,22 @@
-import { FORMATTED_PLATFORM_REGIONS, SPANISH_REGIONS } from '../config/regions';
+import type { SPANISH_REGIONS, } from '../config/regions';
+
+import { FORMATTED_PLATFORM_REGIONS, } from '../config/regions';
 
 export default {
   extra: {
-    regions: (key: unknown): typeof FORMATTED_PLATFORM_REGIONS[keyof typeof FORMATTED_PLATFORM_REGIONS] | typeof SPANISH_REGIONS[keyof typeof SPANISH_REGIONS] => {
-      return FORMATTED_PLATFORM_REGIONS[key as keyof typeof FORMATTED_PLATFORM_REGIONS];
-    },
+    regions: (key: unknown): typeof FORMATTED_PLATFORM_REGIONS[keyof typeof FORMATTED_PLATFORM_REGIONS] | typeof SPANISH_REGIONS[keyof typeof SPANISH_REGIONS] => FORMATTED_PLATFORM_REGIONS[key as keyof typeof FORMATTED_PLATFORM_REGIONS],
   },
   middlewares: {
     cooldown: {
-      user: (timeLeft: string) => {
-        return `⚠️ You are on cooldown for **${timeLeft}** second(s)`;
-      },
-      channel: (timeLeft: string) => {
-        return `⚠️ This channel is on cooldown for **${timeLeft}** second(s)`;
-      },
+      user: (timeLeft: string) => `⚠️ You are on cooldown for **${timeLeft}** second(s)`,
+      channel: (timeLeft: string) => `⚠️ This channel is on cooldown for **${timeLeft}** second(s)`,
     },
   },
   commands: {
     ping: {
       name: 'ping',
       description: 'Show latency with Discord',
-      res: ({ ping }: { ping: number }) => `The ping is \`${ping}ms\``,
+      res: ({ ping, }: { ping: number }) => `The ping is \`${ping}ms\``,
     },
     core: {
       parent: {
@@ -36,8 +32,7 @@ export default {
           region: {
             name: 'region',
             description: 'The region where the summoner is located',
-            fail: (regions: string[]) =>
-              `⚠️ Invalid region provided. Available regions: ${regions.map((value) => `\`${value}\``).join(', ')}`,
+            fail: (regions: string[]) => `⚠️ Invalid region provided. Available regions: ${regions.map((value) => `\`${value}\``).join(', ')}`,
           },
           user: {
             name: 'user',

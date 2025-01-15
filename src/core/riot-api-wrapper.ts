@@ -1,5 +1,7 @@
-import axios, { AxiosInstance, AxiosError } from 'axios';
-import { Logger } from 'seyfert';
+import type { AxiosInstance, AxiosError, } from 'axios';
+
+import { Logger, } from 'seyfert';
+import axios from 'axios';
 const logger = new Logger({
   name: '[RiotApiWrapper]',
 });
@@ -19,10 +21,10 @@ export class RiotApiWrapper {
   protected async request<T>(
     endpoint: string,
     params?: Record<string, any>
-  ): Promise<T | null> {
+  ): Promise<null | T> {
     // Retorna null si hay un error 404
     try {
-      const response = await this.api.get<T>(endpoint, { params });
+      const response = await this.api.get<T>(endpoint, { params, });
       return response.data;
     } catch (error) {
       return this.handleError(error, endpoint);

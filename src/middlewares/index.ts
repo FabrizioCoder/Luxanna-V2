@@ -1,2 +1,2 @@
 import Cooldown from './cooldown';
-export const AllMiddlewares = { Cooldown };
+export const AllMiddlewares = { Cooldown, };

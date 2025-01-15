@@ -60,28 +60,28 @@ export const SPANISH_REGIONS = {
   TH2: 'Tailandia',
   TW2: 'Taiwán',
   VN2: 'Vietnam',
-} as const
+} as const;
 
 export function PLATFORM_TO_REGIONAL(platformRegion: PlatformRegion): RegionalRegion {
   switch (platformRegion) {
+    case 'EUN1':
+    case 'EUW1':
+    case 'JP1':
+    case 'KR':
+      return 'EUROPE';
     case 'BR1':
     case 'LA1':
     case 'LA2':
     case 'NA1':
     case 'OC1':
     case 'TR1':
-    case 'RU':
     case 'PH2':
     case 'SG2':
     case 'TH2':
     case 'TW2':
     case 'VN2':
+    case 'RU':
       return 'AMERICAS';
-    case 'EUN1':
-    case 'EUW1':
-    case 'JP1':
-    case 'KR':
-      return 'EUROPE';
     default:
       return 'ASIA';
   }

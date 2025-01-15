@@ -1,4 +1,4 @@
-import { Declare, Command, AutoLoad, LocalesT } from 'seyfert';
+import { AutoLoad, LocalesT, Declare, Command, } from 'seyfert';
 
 @Declare({
   name: 'sum',
@@ -7,4 +7,4 @@ import { Declare, Command, AutoLoad, LocalesT } from 'seyfert';
 })
 @LocalesT('commands.core.parent.name', 'commands.core.parent.description')
 @AutoLoad()
-export default class SummonerCommand extends Command {}
+export default class SummonerCommand extends Command { }

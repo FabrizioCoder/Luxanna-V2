@@ -1,27 +1,22 @@
-import { SPANISH_REGIONS } from '../config/regions';
 import type English from './en-US';
+
+import { SPANISH_REGIONS, } from '../config/regions';
 
 export default {
   extra: {
-    regions: (key: unknown) => {
-      return SPANISH_REGIONS[key as keyof typeof SPANISH_REGIONS];
-    },
+    regions: (key: unknown) => SPANISH_REGIONS[key as keyof typeof SPANISH_REGIONS],
   },
   middlewares: {
     cooldown: {
-      user: (timeLeft: string) => {
-        return `⚠️ Estás en enfriamiento por **${timeLeft}** segundos`;
-      },
-      channel: (timeLeft: string) => {
-        return `⚠️ Este canal está en enfriamiento por **${timeLeft}** segundos`;
-      },
+      user: (timeLeft: string) => `⚠️ Estás en enfriamiento por **${timeLeft}** segundos`,
+      channel: (timeLeft: string) => `⚠️ Este canal está en enfriamiento por **${timeLeft}** segundos`,
     },
   },
   commands: {
     ping: {
       name: 'ping',
       description: 'Muestra la latencia con Discord',
-      res: ({ ping }: { ping: number }) => `El ping es \`${ping}ms\``,
+      res: ({ ping, }: { ping: number }) => `El ping es \`${ping}ms\``,
     },
     core: {
       parent: {
@@ -37,8 +32,7 @@ export default {
           region: {
             name: 'región',
             description: 'La región donde se encuentra el invocador',
-            fail: (regions: string[]) =>
-              `⚠️ Región inválida proporcionada. Regiones disponibles: ${regions.map((value) => `\`${value}\``).join(', ')}`,
+            fail: (regions: string[]) => `⚠️ Región inválida proporcionada. Regiones disponibles: ${regions.map((value) => `\`${value}\``).join(', ')}`,
           },
           user: {
             name: 'usuario',

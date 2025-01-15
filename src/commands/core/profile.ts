@@ -1,18 +1,19 @@
 import {
   type CommandContext,
-  Declare,
-  LocalesT,
   SubCommand,
+  LocalesT,
+  Declare,
   Options,
 } from 'seyfert';
-import { baseSearchOptions } from '../../config/utils';
+
 import {
   createPlatformAxiosInstance,
   createRegionalAxiosInstance,
 } from '../../config/axios-config';
-import { SummonerService } from '../../services/summoner-service';
-import { AccountService } from '../../services/account-service';
-import { PLATFORM_TO_REGIONAL } from '../../config/regions';
+import { SummonerService, } from '../../services/summoner-service';
+import { AccountService, } from '../../services/account-service';
+import { PLATFORM_TO_REGIONAL, } from '../../config/regions';
+import { baseSearchOptions, } from '../../config/utils';
 
 @Declare({
   name: 'profile',
@@ -24,7 +25,7 @@ export default class ProfileCommand extends SubCommand {
   async run(ctx: CommandContext<typeof baseSearchOptions>) {
     await ctx.deferReply();
 
-    const options = ctx.options!;
+    const options = ctx.options;
 
     const regionalAxios = createRegionalAxiosInstance(
       PLATFORM_TO_REGIONAL(options.region!)
